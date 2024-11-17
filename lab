@@ -1,4 +1,16 @@
-class Lab{
-int labNo;
-String labName;
+class Lab {
+  int labNo;
+  String labName;
+
+  Lab(this.labNo, this.labName);
+
+  void displayInfo() {
+    print('Lab Number: $labNo');
+    print('Lab Name: $labName');
+  }
+}
+
+void main() {
+  Lab lab = Lab(101, 'Chemistry Lab');
+  lab.displayInfo();
 }
