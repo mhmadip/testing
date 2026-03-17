@@ -1,16 +1,36 @@
+/// Represents a laboratory with its number and name.
 class Lab {
-  int labNo;
-  String labName;
+  final int labNo;
+  final String labName;
 
-  Lab(this.labNo, this.labName);
+  /// Creates a [Lab] with the given [labNo] and [labName].
+  const Lab({
+    required this.labNo,
+    required this.labName,
+  });
 
+  /// Validates input before creating a [Lab].
+  factory Lab.create({required int labNo, required String labName}) {
+    if (labNo <= 0) throw ArgumentError('Lab number must be positive');
+    if (labName.trim().isEmpty) throw ArgumentError('Lab name cannot be empty');
+    return Lab(labNo: labNo, labName: labName);
+  }
+
+  /// Displays lab information to the console.
   void displayInfo() {
     print('Lab Number: $labNo');
     print('Lab Name: $labName');
   }
+
+  @override
+  String toString() => 'Lab($labNo, $labName)';
 }
 
 void main() {
-  Lab lab = Lab(101, 'Chemistry Lab');
-  lab.displayInfo();
+  try {
+    final lab = Lab.create(labNo: 101, labName: 'Chemistry Lab');
+    lab.displayInfo();
+  } catch (e) {
+    print('Error: $e');
+  }
 }
